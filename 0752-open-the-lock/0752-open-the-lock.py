@@ -1,7 +1,9 @@
+import collections
+from collections import deque
 class Solution:
     def __init__(self):
         self.visited=set()
-        self.q=[]
+        self.q=deque()
         self.levels={}
     def getneighbors(self,start,deadends):
         neighbors=[]
@@ -27,7 +29,7 @@ class Solution:
         
         
         while(self.q):
-            u=self.q.pop(0)
+            u=self.q.popleft()
             if u==target:
                 return self.levels[u]
 
