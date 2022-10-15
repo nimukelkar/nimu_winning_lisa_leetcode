@@ -14,15 +14,17 @@ class Solution:
             d2=(int(start[i])-1+10)%10
             s1=start[0:i]+str(d)+start[i+1:]
             s2=start[0:i]+str(d2)+start[i+1:]
-            if s1 not in deadends:
+            if s1 not in self.visited:
                 neighbors.append(s1)
-            if s2 not in deadends :
+                
+            if s2 not in self.visited :
                 neighbors.append(s2)
         
         return neighbors
             
     
     def bfs(self,start,target,deadends):
+        self.visited=set(deadends)
         self.q.append(start)
         self.visited.add(start)
         self.levels[start]=0
@@ -36,7 +38,7 @@ class Solution:
             neighbors=self.getneighbors(u,deadends)
            
             for i in neighbors:
-                if i not in self.visited:
+                
                     self.visited.add(i)
                     self.q.append(i)
                     self.levels[i]=self.levels[u]+1
