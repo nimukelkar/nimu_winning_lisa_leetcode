@@ -2,7 +2,7 @@ class Solution:
     def __init__(self):
         self.time=0
         self.q=[]
-        self.visited=set()
+       
         self.levels={}
         self.max_value=0
     def getneighbor(self,u,manager,informTime):
@@ -16,7 +16,7 @@ class Solution:
     def bfs(self,headID,path,informTime,manager,d):
         self.levels[headID]=0
         self.q.append(headID)
-        self.visited.add(headID)
+       
         max_value=0
         while(self.q):
             u=self.q.pop(0)
@@ -27,12 +27,12 @@ class Solution:
                 for i in d[u]:
                 #print("i=",i)
                 #for i in neighbor:
-                    if i not in self.visited:
+                    
                         #print("i=",i)
                         self.q.append(i)
                         self.levels[i]=self.levels[u]+informTime[u]
                         #print("self.levels=",self.levels)
-                        self.visited.add(i)
+                        
                         max_value=max(max_value,self.levels[i])    
         return max_value
     def numOfMinutes(self, n: int, headID: int, manager: List[int], informTime: List[int]) -> int:
