@@ -38,11 +38,16 @@ class Solution:
         if list2 and not list1:
             curr.next=list2
         return head3
+    
     def findmid(self,head):
         slow=head
         fast=head
         
-        while(fast.next):
+        while(fast.next and fast.next.next):
+                fast=fast.next.next
+                slow=slow.next
+        
+        '''while(fast.next):
             
             if not fast.next:
                 break
@@ -50,8 +55,12 @@ class Solution:
                 fast=fast.next.next
                 slow=slow.next
             else:
-                break
+                break'''
+        
+          
+           
         return slow
+    
     def recurse(self,head):
         if not head.next or not head:
             return head
