@@ -6,7 +6,27 @@
 class Solution:
     
     def mergetwo(self,list1,list2):
-        if not list1 and not list2:
+        sentinel=ListNode()
+        curr=sentinel
+        
+        while(list1 and list2):
+            if list1.val<=list2.val:
+                curr.next=list1
+                curr=list1
+                list1=list1.next
+            else:
+                curr.next=list2
+                curr=list2
+                list2=list2.next
+        if list1 and not list2:
+            curr.next=list1
+        if list2 and not list1:
+            curr.next=list2
+            
+        head3=sentinel.next     
+        return head3
+    
+        '''if not list1 and not list2:
             print("In here 1")
             return
         if not list1 and list2:
@@ -37,7 +57,7 @@ class Solution:
             curr.next=list1
         if list2 and not list1:
             curr.next=list2
-        return head3
+        return head3'''
     
     def findmid(self,head):
         slow=head
