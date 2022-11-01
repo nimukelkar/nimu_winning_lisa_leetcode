@@ -6,33 +6,18 @@
 class Solution:
     def removeElements(self, head: Optional[ListNode], val: int) -> Optional[ListNode]:
         
-       
-        if not head:
-            return None
+        #Modify the list in place.
+        sentinel=ListNode(0,head)
+        prev=sentinel
         curr=head
         
-        while(curr.val==val):
-            curr=curr.next
-            if not curr: 
-                break
-                
-        head=curr
-        
-        if not head:
-            return None
-       
-          
-        while(curr.next):
-            while(curr.next.val==val):
-                curr.next=curr.next.next
-                if( not curr.next):
-                    break
-            
-            curr=curr.next
-            if not curr:
-                break
-        
-            
-        
+        while(curr):
+            if curr.val==val:
+                prev.next=curr.next
+                curr=curr.next
+            else:
+                prev=curr
+                curr=curr.next
+        head=sentinel.next
         return head
         
