@@ -19,11 +19,14 @@ class Solution:
            
             
             if node.left:
-                #count+=1
-                dfs(node.left,count+1)
+                count+=1
+                dfs(node.left,count)
+                count-=1
             if node.right:
-                #count+=1
-                dfs(node.right,count+1)
+                count+=1
+                dfs(node.right,count)
+                count-=1
+                
             
         count=0
         dfs(root,count)
