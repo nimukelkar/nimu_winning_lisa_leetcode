@@ -5,15 +5,20 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def __init__(self):
-        self.count=0
-    def preorder(self,node):
-        if not node:
-            return
-        self.count+=1
-        self.preorder(node.left)
-        self.preorder(node.right)
     def countNodes(self, root: Optional[TreeNode]) -> int:
-        self.preorder(root)
-        return self.count
-        
+        ans=[0]
+    
+        if not root:
+            return 0
+        def dfs(node):
+            if not node.left and not node.right:
+                ans[0]+=1
+                return
+            ans[0]+=1    
+            if node.left:
+                dfs(node.left)
+            if node.right:
+                dfs(node.right)
+    
+        dfs(root)
+        return ans[0]
