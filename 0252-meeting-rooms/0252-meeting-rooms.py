@@ -1,9 +1,10 @@
 class Solution:
     def canAttendMeetings(self, intervals: List[List[int]]) -> bool:
-        l=sorted(intervals,key=lambda x:x[1])
-        print(l)
+        intervals=sorted(intervals,key=lambda x:x[0])
+        print(intervals)
         
-        for i in range(len(l)-1):
-            if l[i][1]>l[i+1][0]:
+        for i in range(len(intervals)-1):
+            if intervals[i][1]>intervals[i+1][0]:
                 return False
         return True
+            
