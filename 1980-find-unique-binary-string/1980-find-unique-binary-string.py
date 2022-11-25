@@ -10,7 +10,7 @@ class Solution:
                 return
             
             
-            for j in range(len(menu)):
+            for j in range(2):
                 slate.append(menu[j])
                 dfs(menu,i+1,slate)
                 slate.pop()
