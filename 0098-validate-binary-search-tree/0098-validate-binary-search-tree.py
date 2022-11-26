@@ -6,22 +6,21 @@
 #         self.right = right
 class Solution:
     def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        
-        flag=[True]
-         
-        def dfs(node,min,max):
+        ans=[]
+        if not root:
+            return False
+        def dfs(node):
             if not node.left and not node.right:
-                if node.val<=min or node.val>=max:
-                    flag[0]=False
-            if node.val<=min or node.val>=max:
-                    flag[0]=False
+                ans.append(node.val)
+                return
             if node.left:
-                dfs(node.left,min,node.val)
+                dfs(node.left)
+            ans.append(node.val)
             if node.right:
-                dfs(node.right,node.val,max)
-        min=float("-inf")
-        max=float("inf")
-        dfs(root,min,max)
-        return flag[0]
-            
-                
+                dfs(node.right)
+        dfs(root)
+        print(ans)
+        for i in range(len(ans)-1):
+            if ans[i]>=ans[i+1]:
+                return False
+        return True
