@@ -7,21 +7,20 @@
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
         
-        count=[0]
+        #count=[0]
         if not root:
             return 0
         
         def postorder(node):
             if not node.left and not node.right:
-                count[0]=count[0]+1
-                return count[0]
-            
+                return 1
+            count_l,count_r=0,0
             if node.left:
-                count[0]=postorder(node.left)
+                count_l=postorder(node.left)
             if node.right:
-                count[0]=postorder(node.right)
+                count_r=postorder(node.right)
             
-            count[0]=count[0]+1
-            return count[0]
+            count=count_l+count_r+1
+            return count
         ans=postorder(root)
         return ans
