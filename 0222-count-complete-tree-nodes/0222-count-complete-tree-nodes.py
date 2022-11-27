@@ -6,19 +6,22 @@
 #         self.right = right
 class Solution:
     def countNodes(self, root: Optional[TreeNode]) -> int:
-        ans=[0]
-    
+        
+        count=[0]
         if not root:
             return 0
-        def dfs(node):
+        
+        def postorder(node):
             if not node.left and not node.right:
-                ans[0]+=1
-                return
-            ans[0]+=1    
+                count[0]=count[0]+1
+                return count[0]
+            
             if node.left:
-                dfs(node.left)
+                count[0]=postorder(node.left)
             if node.right:
-                dfs(node.right)
-    
-        dfs(root)
-        return ans[0]
+                count[0]=postorder(node.right)
+            
+            count[0]=count[0]+1
+            return count[0]
+        ans=postorder(root)
+        return ans
