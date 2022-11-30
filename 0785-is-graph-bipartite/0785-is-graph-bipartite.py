@@ -26,7 +26,7 @@ class Solution:
         for i in range(len(graph)):
             if i not in visited:
                 visited[i]=0
-                parent[i]=0
+                parent[i]=i
                 bfs(i)
         return ans[0]
             
