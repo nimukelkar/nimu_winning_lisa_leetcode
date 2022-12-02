@@ -1,54 +1,44 @@
 from collections import *
 class Solution:
     def validTree(self, n: int, edges: List[List[int]]) -> bool:
-        # A graph is a valid tree if connected components=1 
-        # A graph is a valid tree if no of cycles=0
         d=defaultdict(list)
-        visited=set()
+        visited={}
         parents={}
-        parents[0]=0
-        flag=[True]
+        ans=[True]
         for u,v in edges:
             d[u].append(v)
             d[v].append(u)
-        print(d)
         
-        def bfs(node):
-            q=deque()
-            q.append(node)
-            visited.add(node)
-            #parents[node]=-1
-            
-            while(q):
-                u=q.popleft()
+        #No of connected components=1 and no cycles
+        
+        def dfs(node):
+            for neighbor in d[node]:
+                if neighbor not in visited:
+                    visited[neighbor]=visited[node]+1
+                    parents[neighbor]=node
+                    dfs(neighbor)
                 
-                for neighbor in d[u]:
-                    if neighbor not in visited:
-                        visited.add(neighbor)
-                        parents[neighbor]=u
-                        q.append(neighbor)
-                    
-                    else:
-                        #print("In here")
-                        if neighbor in visited and parents[u]!=neighbor:
-                            flag[0]=False
+                else:
+                    # Check for cycles
+                    if parents[node]!=neighbor:
+                        ans[0]=False
+                        
+        
+        
+        
+        
+        
+        
+        
+        
         count=0
         for i in range(n):
             if i not in visited:
-                bfs(i)
+                visited[i]=0
+                parents[i]=0
+                dfs(i)
                 count+=1
-        #print("visited=",visited)
-        #print("parents=",parents)
-        #print(count)
         if count>1:
-            flag[0]=False
-        return flag[0]
-                            
-        
-        
-        
-        
-        
-            
-            
-       
+            ans[0]=False
+        return ans[0]
+                
