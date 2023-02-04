@@ -1,10 +1,13 @@
 from collections import *
 class Solution:
     def openLock(self, deadends: List[str], target: str) -> int:
-        
         visited={}
-        d1=set(deadends)
-        def getneighbor(u):
+        
+        
+        
+        
+        def calculate(u):
+            # Generate valid neighbors of u
             s1=""
             s2=""
             l=[]
@@ -21,26 +24,28 @@ class Solution:
             #print("l=",l)
             return l
         
-        def bfs(start):
+        
+        
+        
+        
+        def bfs(node):
             q=deque()
-            q.append(start)
+            q.append(node)
             
             while(q):
                 u=q.popleft()
+            
+                neighborlist=calculate(u)
                 
-                neighborlist=getneighbor(u)
                 for neighbor in neighborlist:
-                    if neighbor==target:
+                    if neighbor ==target:
                         visited[neighbor]=visited[u]+1
                         return visited[neighbor]
+                        
                     if neighbor not in visited:
                         visited[neighbor]=visited[u]+1
                         q.append(neighbor)
             return -1
-        
-        
-        
-            
         
         
         start="0000"
@@ -51,7 +56,4 @@ class Solution:
         if start==target:
             return 0
         visited[start]=0
-        ans=bfs(start)
-        return ans
-        
-        
+        return bfs(start)
