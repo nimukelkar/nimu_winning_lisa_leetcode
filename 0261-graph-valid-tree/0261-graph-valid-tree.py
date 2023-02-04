@@ -1,44 +1,42 @@
 from collections import *
 class Solution:
     def validTree(self, n: int, edges: List[List[int]]) -> bool:
-        d=defaultdict(list)
-        visited={}
+        #No of connected components=1
+        #No cycles
+        visited=set()
+        flag=[True]
         parents={}
-        ans=[True]
+        d=defaultdict(list)
         for u,v in edges:
             d[u].append(v)
             d[v].append(u)
+        #print(d)
         
-        #No of connected components=1 and no cycles
-        
-        def dfs(node):
-            for neighbor in d[node]:
-                if neighbor not in visited:
-                    visited[neighbor]=visited[node]+1
-                    parents[neighbor]=node
-                    dfs(neighbor)
+        def bfs(node):
+            q=deque()
+            q.append(node)
+            
+            while(q):
+                u=q.popleft()
                 
-                else:
-                    # Check for cycles
-                    if parents[node]!=neighbor:
-                        ans[0]=False
-                        
-        
-        
-        
-        
-        
-        
-        
-        
+                for neighbor in d[u]:
+                    if neighbor not in visited:
+                        visited.add(neighbor)
+                        parents[neighbor]=u
+                        q.append(neighbor)
+                    else:
+                        if parents[u]!=neighbor:
+                            flag[0]=[False]
         count=0
         for i in range(n):
             if i not in visited:
-                visited[i]=0
-                parents[i]=0
-                dfs(i)
+                visited.add(i)
+                bfs(i)
                 count+=1
-        if count>1:
-            ans[0]=False
-        return ans[0]
+        if count==1 and flag[0]==True:
+            return True
+        return False
                 
+                            
+                        
+        
