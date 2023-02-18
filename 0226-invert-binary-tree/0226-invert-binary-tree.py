@@ -6,16 +6,21 @@
 #         self.right = right
 class Solution:
     def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
-        
         if not root:
-            return 
+            return
         def dfs(node):
-            if not root.left and not root.right:
+            if not node.left and not node.right:
+                temp=node.left
+                node.left=node.right
+                node.right=temp
                 return
+            
             if node.left:
                 dfs(node.left)
+            
             if node.right:
                 dfs(node.right)
+            
             temp=node.left
             node.left=node.right
             node.right=temp
