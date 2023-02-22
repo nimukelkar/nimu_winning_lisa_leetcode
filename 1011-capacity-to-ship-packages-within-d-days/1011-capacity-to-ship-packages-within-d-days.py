@@ -2,7 +2,7 @@ class Solution:
     def shipWithinDays(self, weights: List[int], days: int) -> int:
         low=max(weights)
         high=sum(weights)
-        print("low=",low,"high=",high)
+        
         while(low<=high):
             mid=low+(high-low)//2
             
@@ -27,6 +27,5 @@ class Solution:
             else:
                 high=mid-1
         
-        print("low=",low)
-        print("high=",high)
+       
         return low
