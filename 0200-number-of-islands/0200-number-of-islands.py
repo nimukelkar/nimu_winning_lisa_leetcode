@@ -1,9 +1,7 @@
-from collections import *
 class Solution:
     def numIslands(self, grid: List[List[str]]) -> int:
-        #Connected components
         visited={}
-        
+    
         def getneighbor(node):
             nx,ny=node
             l=[]
@@ -18,34 +16,29 @@ class Solution:
                 
             return l
         
-        
         def dfs(node):
-            ux,uy=node
-            # Check neighbors of ux,uy
-            
             neighborlist=getneighbor(node)
             
             for neighbor in neighborlist:
                 if neighbor not in visited:
-                    visited[neighbor]=visited[(ux,uy)]+1
+                    visited[neighbor]=visited[node]+1
                     dfs(neighbor)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        m=len(grid)
-        n=len(grid[0])
+    
+    
+    
+    
+    
+    
+    
+    
+    
         count=0
+        m,n=len(grid),len(grid[0])
         for i in range(m):
             for j in range(n):
                 if ((i,j) not in visited and grid[i][j]=="1"):
                     visited[(i,j)]=0
                     dfs((i,j))
-                    #print("visited=",visited)
                     count+=1
         return count
+        
