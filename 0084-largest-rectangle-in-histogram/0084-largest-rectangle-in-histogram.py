@@ -20,7 +20,7 @@ class Solution:
             stk.append(i)
             
         
-        #print(ans)
+        
         for i in range(n):
             if ans[i]==0:
                 rspan[i]=n-i
@@ -29,21 +29,20 @@ class Solution:
       
         for i in range(n):
             right_result[i]=rspan[i]*heights[i]
-        #print("Right span=",rspan) 
-        #Find prev smaller element
         
-        heights=heights[::-1]
+        # Find prev smaller element
+        #heights=heights[::-1]
         ans2=[0 for i in range(n)]
         left_span=[0 for i in range(n)]
         stk2=[]
         for i in range(n):
             while(stk2 and heights[i]<heights[stk2[-1]]):
-                idx=stk2.pop()
-                ans2[idx]=i-idx
+                stk2.pop()
+            
+            if stk2:
+                ans2[i]=i-stk2[-1]
 
             stk2.append(i)
-        ans2=ans2[::-1]
-        heights=heights[::-1]
         
         #print("ans2=",ans2)
         for i in range(n):
