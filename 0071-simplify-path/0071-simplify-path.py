@@ -8,15 +8,21 @@ class Solution:
 
         l=path.split("/")
         print(l)
+        stk=[]
         ans=""
+    
         for i in l:
-            if i==".." and len(ans)>0:
+            if i==".." and len(stk)>0:
                 #print(ans)
-                ans=ans[:ans.rindex("/")]
+                stk.pop()
+                continue
             elif i!=".." and i!="" and i!=".":
-                ans+="/"+i
-        if not ans:
-            return "/"
+                #print("i=",i)
+                stk.append(i)
+        for i in stk:
+            ans+='/'+i
+        if not ans or ans[0]!="/":
+            return "/"+ans
         return ans
      
            
