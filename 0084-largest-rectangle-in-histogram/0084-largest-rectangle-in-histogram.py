@@ -1,6 +1,5 @@
 class Solution:
-    def largestRectangleArea(self, heights: List[int]) -> int:
-        
+    def largestRectangleArea(self, heights: List[int]) -> int:       
         stk=[]
         n=len(heights)
         final=[0 for i in range(n)]
@@ -12,14 +11,10 @@ class Solution:
         
         #Find next smaller element
         for i in range(n):
-            
-            
             while(stk and heights[i]<heights[stk[-1]]):
                 idx=stk.pop()
                 ans[idx]=i-idx
-            stk.append(i)
-            
-        
+            stk.append(i)        
         
         for i in range(n):
             if ans[i]==0:
@@ -28,10 +23,9 @@ class Solution:
                 rspan[i]=ans[i]
       
         for i in range(n):
-            right_result[i]=rspan[i]*heights[i]
-        
+            right_result[i]=rspan[i]*heights[i]        
         # Find prev smaller element
-        #heights=heights[::-1]
+       
         ans2=[0 for i in range(n)]
         left_span=[0 for i in range(n)]
         stk2=[]
@@ -43,21 +37,19 @@ class Solution:
                 ans2[i]=i-stk2[-1]
 
             stk2.append(i)
-        
-        #print("ans2=",ans2)
+                
         for i in range(n):
             if ans2[i]==0:
                 left_span[i]=i+1
             else:
                 left_span[i]=ans2[i]
-        #print("Left_span=",left_span)
+      
         for i in range(n):
             left_result[i]=heights[i]*left_span[i]
-        #print("left_result=",left_result)
+   
         for i in range(n):
             final[i]=left_result[i]+right_result[i]-heights[i]
-        #print("Right result=",right_result)
-        #print("final=",final)
+       
         return max(final)
             
 
