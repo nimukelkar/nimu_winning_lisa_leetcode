@@ -1,4 +1,3 @@
-
 class Solution:
     def merge(self,arr,low,mid,high):
         i=low
