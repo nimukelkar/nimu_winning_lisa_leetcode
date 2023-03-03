@@ -66,3 +66,5 @@ class Solution:
                     print(haystack[i+1:i+lenp+1])
                     return i+1
         return -1
+            
+        
