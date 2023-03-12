@@ -55,5 +55,3 @@ class Solution:
         high=len(lists)-1
         self.recurse(lists,low,high)
         return lists[low]
-        
-        
