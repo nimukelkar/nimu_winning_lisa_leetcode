@@ -7,13 +7,17 @@
 class Solution:
     def hasPathSum(self, root: Optional[TreeNode], targetSum: int) -> bool:
         if not root:
-            return False
-        ans=[False]
+            return
+        flag=[False]
+        l=[]
+        
         def dfs(node,slate):
+            
             if not node.left and not node.right:
+                #Leaf node
                 slate.append(node.val)
                 if sum(slate)==targetSum:
-                    ans[0]=[True]  
+                    flag[0]=True
                 slate.pop()
                 return
             
@@ -23,5 +27,11 @@ class Solution:
             if node.right:
                 dfs(node.right,slate)
             slate.pop()
+        
         dfs(root,[])
-        return ans[0]
+        return flag[0]
+        
+                
+                
+                
+                
