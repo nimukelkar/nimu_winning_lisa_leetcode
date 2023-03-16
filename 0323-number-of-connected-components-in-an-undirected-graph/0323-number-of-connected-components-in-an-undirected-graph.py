@@ -1,19 +1,25 @@
-from collections import defaultdict
 class Solution:
     def countComponents(self, n: int, edges: List[List[int]]) -> int:
+        #BFS function
+        #No of times this function is called.
+        visited=set()
         d=defaultdict(list)
-        visited={}
+        
         for u,v in edges:
             d[u].append(v)
             d[v].append(u)
         
-        #print("d=",d)
-        def dfs(i):
+        def bfs(node):
+            q=deque()
+            q.append(node)
             
-            for neighbor in d[i]:
-                if neighbor not in visited:
-                    visited[neighbor]=visited[i]+1
-                    dfs(neighbor)
+            while(q):
+                u=q.popleft()
+                
+                for neighbor in d[u]:
+                    if neighbor not in visited:
+                        visited.add(neighbor)
+                        q.append(neighbor)
         
         
         
@@ -28,14 +34,7 @@ class Solution:
         count=0
         for i in range(n):
             if i not in visited:
-                visited[i]=0
-                dfs(i)
+                visited.add(i)
+                bfs(i)
                 count+=1
         return count
-            
-        
-        
-        
-        
-        
-        
