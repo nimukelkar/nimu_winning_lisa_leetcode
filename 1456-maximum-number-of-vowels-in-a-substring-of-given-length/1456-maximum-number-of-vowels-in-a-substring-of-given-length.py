@@ -12,7 +12,7 @@ class Solution:
                 count+=1
             if s[i-k]=='a' or s[i-k]=='e' or s[i-k]=='i' or s[i-k]=='o' or s[i-k]=='u':
                 count-=1
-            print("count=",count)
+            #print("count=",count)
             maxi=max(maxi,count)
         
         return maxi
