@@ -1,43 +1,43 @@
 class Solution:
-    def merge(self,arr,low,mid,high):
-        i=low
-        j=mid+1
-        aux=[]
+    def partition(self,nums,low,high):
+        r=random.randint(low,high)
+        nums[low],nums[r]=nums[r],nums[low]
+        pindex=low
+        curr=pindex+1
+        ptr2=high
+        while(True):
+            if nums[curr]<=nums[pindex]:
+                curr+=1
+                if curr>ptr2:
+                    break
+            if nums[curr]>=nums[pindex]:
+                nums[curr],nums[ptr2]=nums[ptr2],nums[curr]
+                ptr2-=1
+                if curr>ptr2:
+                    break
+        nums[pindex],nums[ptr2]=nums[ptr2],nums[pindex]
+        return ptr2
     
-        while(i<=mid and j<=high):
-            if arr[i]<=arr[j]:
-                aux.append(arr[i])
-                i+=1
-            else:
-                aux.append(arr[j])
-                j+=1
-        while(i<=mid):
-            aux.append(arr[i])
-            i+=1
-        while(j<=high):
-            aux.append(arr[j])
-            j+=1
-        count=0
-        for i in range(low,high+1):
-            arr[i]=aux[count]
-            count+=1
-            if count==len(aux):
-                break
-        #print("aux=",aux)
-        #print("arr=",arr)   
-        
-    
-    def mergesort(self,arr,low,high):
-    
+    def quicksort(self,nums,low,high):
         if low>=high:
             return
-        mid=(low+high)//2
-        self.mergesort(arr,low,mid)
-        self.mergesort(arr,mid+1,high)
-        self.merge(arr,low,mid,high)
-
-    def sortArray(self, arr: List[int]) -> List[int]:
+        p=self.partition(nums,low,high)
+        self.quicksort(nums,low,p-1)
+        self.quicksort(nums,p+1,high)
+    
+    
+    
+    def sortArray(self, nums: List[int]) -> List[int]:
         low=0
-        high=len(arr)-1
-        self.mergesort(arr,low,high)
-        return arr
+        high=len(nums)-1
+        
+        self.quicksort(nums,low,high)
+        return nums
+    
+    
+    
+    
+    
+    
+    
+        
