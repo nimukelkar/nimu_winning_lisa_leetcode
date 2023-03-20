@@ -1,20 +1,20 @@
 class Solution:
     def canPlaceFlowers(self, flowerbed: List[int], n: int) -> bool:
-        count,previous=0,0 
-        #Count-no of flowers we can plant
-        # Prev-what was on prev
+        prev,count=0,0
         
         for current in flowerbed:
+            
             if current==1:
-                if previous==1:
+                if prev==1:
                     count-=1
-                previous=1
+                prev=1
+            
             else:
-                if previous==1:# can't plant
-                    previous=0
+                if prev==1:
+                    prev=0
                 else:
                     count+=1
-                    previous=1
+                    prev=1
         if count>=n:
             return True
         return False
