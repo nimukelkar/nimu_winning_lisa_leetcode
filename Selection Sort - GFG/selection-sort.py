@@ -2,15 +2,22 @@
 
 class Solution: 
     
+    
     def selectionSort(self, arr,n):
-        for i in range(n):
-            min_idx=i
-            for j in range(i+1,n):
-                if arr[j]<arr[min_idx]:
-                    min_idx=j
-            arr[min_idx],arr[i]=arr[i],arr[min_idx]
-        return arr
+        #code here
         
+        for i in range(n):
+            mini=arr[i]
+            index=i
+            for j in range(i+1,n):
+                if arr[j]<mini:
+                    mini=arr[j]
+                    index=j
+            
+            arr[i],arr[index]=arr[index],arr[i]
+        
+        return arr
+                
 
 
 #{ 
